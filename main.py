@@ -1,31 +1,45 @@
-print("Welcome to the Personal Finance Tracker")
-
-
+print("Welcome to the Personal Finance Tracker !!")
 
 Income = 0
 Expense = 0
 Stop = True
 
 while Stop:
-    choice = input("What do you want to choose Income / Expenses / Savings / Quit? ").lower().strip()
-    if choice == 'income':
-        amount = int(input("Enter the amount: "))
-        Income += amount
-        print("Your income is updated!!")
-        print(Income)
-    elif choice == 'expense': 
-        amount = int(input("Enter the amount: "))
-        Expense += amount 
-        print("Your expenses are updated!!")
-        print(Expense)
-    elif choice == 'savings': 
-        Savings = int(Income) - int(Expense)
-        print(f"Your Savings are: {Savings}")
-    elif choice == 'quit': 
-        Stop = False
-        print("GoodBye!")
+    print("\nChoose an option:")
+    print("Income / Expense / Savings / Quit")
+
+    choice = input("Enter your choice: ").lower().strip() #used strips so that there shouldn't be any whitespaces remains
+
+    if choice == "income":
+        while True:
+            amount = input("Enter the amount: ")
+            try: 
+                amount = float(amount)
+                Income += amount
+                print("Income updated Successfully!")
+                print("Total Income: ",Income)
+                break
+            except:
+                print("Please enter a valid number.")
+    elif choice == "expense":
+        while True:
+            amount = input("Enter the amount: ")
+            try:
+                amount = float(amount)
+                Expense += amount
+                print("Expense updated Successfully!")
+                print("Total Expense: ", Expense)
+                break
+            except:
+                print("Please enter a valid number.")
+    elif choice == "savings":
+        Savings = Income - Expense
+        print("\n ---Summary---")
+        print("Income:",Income)
+        print("Expense:",Expense)
+        print("Savings:", Savings)
+
+    elif choice == "quit":
+        print("Thanks for using the Finance Tracker. Goodbye!")
     else:
-        print("Wrong Input !!")
-        print("Please try again !!")
-        
-# Update 1. Made input user-friendly, 2. Removed unnecessary variables, 
+        print("Invalid choice. Please try again.")
