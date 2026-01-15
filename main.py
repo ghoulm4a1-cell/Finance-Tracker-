@@ -31,16 +31,12 @@ def add_expense(Expense):
     return Expense
 
 def show_summary(Income, Expense):
-    while True:
-        try:
             Savings = Income - Expense
             print("\n ---Summary---")
             print("Income:",Income)
             print("Expense:",Expense)
             print("Savings:", Savings)
-            break
-        except:
-            print("Please enter a valid number.")
+
 
 
 while Stop:
