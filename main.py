@@ -1,9 +1,26 @@
+print("-------------------------------------------")
 print("Welcome to the Personal Finance Tracker !!")
+print("-------------------------------------------")
 
-Income = 0
-Expense = 0
-Stop = True
 
+file_name = "Finacne.txt"
+
+def load_data():
+    try:
+        with open(file_name, 'r') as file:
+            Income = float(file.readline())
+            Expense = float(file.radline())
+            return Income, Expense
+    except FileNotFoundError:
+        return 0, 0
+    except ValueError:
+        return 0, 0
+    
+def save_data(Income, Expense):
+    with open(file_name, 'w') as file:
+        file.write(str(Income)+ "\n")
+        file.write(str(Expense)+ "\n")
+               
 def add_income(Income):
     while True:
         amount = input("Enter the amount: ")
@@ -16,7 +33,7 @@ def add_income(Income):
         except:
             print("Please enter a valid number.")
     return Income
-
+    
 def add_expense(Expense):
     while True:
         amount = input("Enter the amount: ")
@@ -37,10 +54,11 @@ def show_summary(Income, Expense):
             print("Expense:",Expense)
             print("Savings:", Savings)
 
-
+Income, Expense = load_data()
+Stop = True
 
 while Stop:
-    print("\nChoose an option:")
+    print("Choose an option:")
     print("Income / Expense / Savings / Quit")
 
     choice = input("Enter your choice: ").lower().strip() #used strips so that there shouldn't be any whitespaces remains
@@ -52,7 +70,9 @@ while Stop:
     elif choice == "savings":
         Savings = show_summary(Income, Expense)
     elif choice == "quit":
-        print("Thanks for using the Finance Tracker. Goodbye!")
+        save_data(Income, Expense)
+        print("Data Saved!! Goodbye!")
+        Stop = False
     else:
         print("Invalid choice. Please try again.")
 
