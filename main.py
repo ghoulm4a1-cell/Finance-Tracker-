@@ -3,13 +3,13 @@ print("Welcome to the Personal Finance Tracker !!")
 print("-------------------------------------------")
 
 
-file_name = "Finacne.txt"
+file_name = "Finance.txt"
 
 def load_data():
     try:
         with open(file_name, 'r') as file:
             Income = float(file.readline())
-            Expense = float(file.radline())
+            Expense = float(file.readline())
             return Income, Expense
     except FileNotFoundError:
         return 0, 0
@@ -68,7 +68,7 @@ while Stop:
     elif choice == "expense":
         Expense = add_expense(Expense)
     elif choice == "savings":
-        Savings = show_summary(Income, Expense)
+        show_summary(Income, Expense)
     elif choice == "quit":
         save_data(Income, Expense)
         print("Data Saved!! Goodbye!")
